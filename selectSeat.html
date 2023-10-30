@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="scripts/jquery-3.7.1.min.js"></script>
+        <script src="scripts/selectSeat.js"></script>
+        <title>20083971D & 20091909D Group Project: Train Ticket Selling System</title>
+        <style>
+            @media (min-width: 600px){
+                body {
+                    background-color:none;
+                }
+            }
+            .seatSelection-background{
+                background-image: url('assets/selectSeat.jpg'); height: 100vh; background-size: cover;
+                background-repeat: no-repeat; background-position: center center;
+            }
+            .available{
+                fill: rgb(40, 134, 61); stroke: white; stroke-width: 3px; stroke-opacity: 60%; cursor: pointer;
+            }
+            .occupied{
+                fill: rgb(245, 79, 79); stroke: white; stroke-width: 3px; stroke-opacity: 60%; cursor: not-allowed;
+            }
+
+            .selected{
+                fill: rgb(251, 188, 72); stroke: white; stroke-width: 3px; stroke-opacity: 60%; cursor: pointer;
+            }
+
+            .unavailable{
+                fill: gray; stroke: white; stroke-width: 3px; stroke-opacity: 60%; cursor: not-allowed;
+            }
+        </style>
+    </head>
+
+    <body class="seatSelection-background">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-opacity-75">
+            <div class="container-fluid d-flex justify-content-between">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-start p-1" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="dashboard.html">Tickets</a>
+                    </div>
+                </div>
+                 
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-opacity-25 py-4">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="carousel-control-prev py-4 text-decoration-none justify-content-start" href="dashboard.html" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Back</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="container justify-content-center align-items-center">
+            <div class="d-flex justify-content-center py-3">
+                <div class="container" style="overflow: hidden; min-width: 700px;">
+                    <form>
+                        <div class="row-cols-2 d-flex justify-content-center" style="height: 85px; background-color: rgba(128, 128, 128, 0.5);">
+                            <div class="col d-flex justify-content-center align-items-center w-auto">
+                                <div class="btn-group btn-sm d-flex justify-content-sm-start">
+                                    <button class="btn btn-secondary" id="bussinessButton" value="bussiness" onclick="selectClass('bussiness')">Bussiness</button>
+                                    <button class="btn btn-primary" id="economyButton" value="economy" onclick="selectClass('economy')">Economy</button>
+                                </div>
+                            </div>
+                            <div class="col w-auto">
+                                <svg width="450">
+                                    <rect class="available" x="50" y="15" rx="10" ry="10" width="40" height="40"></rect>
+                                    <text x="70" y="70" fill="white" text-anchor="middle" alignment-baseline="central">Available</text>
+                                    <rect class="selected" x="150" y="15" rx="10" ry="10" width="40" height="40"></rect>
+                                    <text x="170" y="70" fill="white" text-anchor="middle" alignment-baseline="central">Selected</text>
+                                    <rect class="occupied" x="250" y="15" rx="10" ry="10" width="40" height="40"></rect>
+                                    <text x="270" y="70" fill="white" text-anchor="middle" alignment-baseline="central">Occupied</text>
+                                    <rect class="unavailable" x="350" y="15" rx="10" ry="10" width="40" height="40"></rect>
+                                    <text x="370" y="70" fill="white" text-anchor="middle" alignment-baseline="central">Unavailable</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-center py-1" style="height: 400px; background-color: rgba(255,255,255,0.65);">
+                        <svg width="545" height="400">
+                            <g>
+                                <text x="30" y="75" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">A</text>
+                                <text x="30" y="145" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">B</text>
+                                <text x="30" y="255" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">C</text>
+                                <text x="30" y="325" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">D</text>
+                            </g>
+                            <g>
+                                <text x="70" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">1</text>
+                                <rect class="unavailable" value="1A" id="bussiness" x="50" y="55" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="1B" id="bussiness" x="50" y="125" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="1C" id="bussiness" x="50" y="235" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="1D" id="bussiness" x="50" y="305" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="70" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">1</text>
+                            </g>
+                            <g>
+                                <text x="120" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">2</text>
+                                <rect class="unavailable" value="2A" id="bussiness" x="100" y="55" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="2B" id="bussiness" x="100" y="125" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="2C" id="bussiness" x="100" y="235" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="2D" id="bussiness" x="100" y="305" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="120" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">2</text>
+                            </g>
+                            <g>
+                                <text x="170" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">3</text>
+                                <rect class="unavailable" value="3A" id="bussiness" x="150" y="55" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="3B" id="bussiness" x="150" y="125" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="3C" id="bussiness" x="150" y="235" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="unavailable" value="3D" id="bussiness" x="150" y="305" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="170" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">3</text>
+                            </g>
+                            <g>
+                                <text x="220" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">4</text>
+                                <rect class="available" value="4A" id="economy" x="200" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="4B" id="economy" x="200" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="4C" id="economy" x="200" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="4D" id="economy" x="200" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="4E" id="economy" x="200" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="3F" id="economy" x="200" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="220" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">4</text>
+                            </g>
+                            <g>
+                                <text x="270" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">5</text>
+                                <rect class="available" value="5A" id="economy" x="250" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="5B" id="economy" x="250" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="5C" id="economy" x="250" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="5D" id="economy" x="250" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="5E" id="economy" x="250" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="5F" id="economy" x="250" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="270" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">5</text>
+                            </g>
+                            <g>
+                                <text x="320" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">6</text>
+                                <rect class="available" value="6A" id="economy" x="300" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="6B" id="economy" x="300" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="6C" id="economy" x="300" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="6D" id="economy" x="300" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="6E" id="economy" x="300" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="6F" id="economy" x="300" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="320" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">6</text>
+                            </g>
+                            <g>
+                                <text x="370" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">7</text>
+                                <rect class="available" value="7A" id="economy" x="350" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="7B" id="economy" x="350" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="7C" id="economy" x="350" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="7D" id="economy" x="350" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="7E" id="economy" x="350" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="7F" id="economy" x="350" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="370" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">7</text>
+                            </g>
+                            <g>
+                                <text x="420" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">8</text>
+                                <rect class="available" value="8A" id="economy" x="400" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="8B" id="economy" x="400" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="8C" id="economy" x="400" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="8D" id="economy" x="400" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="8E" id="economy" x="400" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="8F" id="economy" x="400" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="420" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">8</text>
+                            </g>
+                            <g>
+                                <text x="470" y="25" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">9</text>
+                                <rect class="available" value="9A" id="economy" x="450" y="40" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="9B" id="economy" x="450" y="90" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="9C" id="economy" x="450" y="140" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="9D" id="economy" x="450" y="220" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="9E" id="economy" x="450" y="270" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <rect class="available" value="9F" id="economy" x="450" y="320" rx="10" ry="10" width="40" height="40" onclick="selectSeat()"/>
+                                <text x="470" y="375" fill="#5A5A5A" text-anchor="middle" alignment-baseline="central">9</text>
+                            </g>
+                            <g>
+                                <text x="510" y="65" fill="#5A5A5A">A</text>
+                                <text x="510" y="115" fill="#5A5A5A">B</text>
+                                <text x="510" y="165" fill="#5A5A5A">C</text>
+                                <text x="510" y="250" fill="#5A5A5A">D</text>
+                                <text x="510" y="300" fill="#5A5A5A">E</text>
+                                <text x="510" y="350" fill="#5A5A5A">F</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="py-2" style="height: 85px; background-color: rgba(128, 128, 128, 0.5);">
+                        <p class="fs-5 px-3 text-white"><span>Seleced Seat:</span></p>
+                        <p class="fs-5 px-3 text-white">Total Price: $<span>0</span></p>
+                    </div>
+                    <div class="p-3">
+                        <button class="btn btn-success" onclick="window.location.href='passenger.html'">Comfirm</button>
+                        <button class="btn btn-warning">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-3"></div>
+
+        <footer class="text-bg-dark bg-opacity-75 fixed-bottom d-flex justify-content-center align-items-center py-3">
+            © 20083971D Qiu Liuming, 20091909D Su Bowen
+        </footer>
+    </body>
+
+
+</html>
