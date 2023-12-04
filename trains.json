@@ -1,0 +1,43 @@
+[
+    {
+      "username": "alice",
+      "password": "ecila",
+      "role": "user",
+      "enabled": true
+    },
+    {
+      "username": "bob",
+      "password": "bob1234",
+      "role": "user",
+      "enabled": false
+    },
+    {
+      "username": "janice",
+      "password": "ecinaj",
+      "role": "user",
+      "enabled": true
+    },
+    {
+      "username": "root",
+      "password": "root+pass",
+      "role": "admin",
+      "enabled": true
+    },
+    {
+      "username": "20083971d",
+      "password": "20083971d",
+      "role": "student",
+      "enabled": true
+    },
+    {
+      "username": "lab4user",
+      "password": "lab4userlab4user",
+      "enabled": true
+    },
+    {
+      "username": "3971Y",
+      "password": "20083971",
+      "role": "student",
+      "enabled": true
+    }
+  ]

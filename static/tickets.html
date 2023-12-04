@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/tickets.js"></script>
+        <title>20083971D & 20091909D Group Project: Train Ticket Selling System</title>
+        <style>
+            .payment-background{
+            background-image: url('assets/payment.jpg');
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            }
+        </style>
+    </head>
+
+    <body class="payment-background">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-opacity-75">
+            <div class="container-fluid d-flex justify-content-start">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-start p-1" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="dashboard.html">Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="text-center">
+            <div style="background-color: rgba(0, 0, 0, 0.6); height: 150px;">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <h1 class="text-white">Your Tickets</h1>
+                </div> 
+            </div>
+        </div>
+
+        <div id="tickets">
+                <form class="m-3" id="tickets" method="POST" action="/event/eventDetails">
+                    <!-- <div class="auth-form-header text-lg-start p-3">
+                        <h2>Ticket</h1>
+                    </div>
+                    <div class="mx-3 row-4">
+                        <label class="px-1 col fw-bold">Price</label>
+                        <input class="col text-start bg-dark text-white" id="total_price" name="total_price" value="67 HKD" readonly />
+                        <label class="px-1 col fw-bold">Passenger Name: </label>
+                        <input class="col text-start bg-dark text-white" id="passenger_name" name="passenger_name" value="Qiu Liuming" readonly />
+                    </div>
+                    <div class="mx-3 row">
+                        <label class="px-1 col fw-bold">Train ID</label>
+                        <input class="col text-start bg-dark text-white" id="train_id" name="train_id" value="G123" readonly />
+                    </div>
+                    <div class="mx-3 row">
+                        <label class="px-1 col fw-bold">Seat Selected</label>
+                        <div id="seat_selected" class="col px-1">7B</div>
+                    </div>
+                    <div class="mx-2 py-3 row" id="eventDetails">
+                        <h4>Details</h4>
+                        <div>
+                            <div class="mx-3 row">
+                                <label class="px-1 col fw-bold">Depart</label>
+                                <input class="col text-start bg-dark text-white", value="HK" readonly/>
+                                <label class="px-1 col fw-bold">Arrive</label>
+                                <input class="col text-start bg-dark text-white", value="SZ" readonly/>
+                            </div>
+                            <div class="mx-2 row">
+                                <label class="px-1 col fw-bold">Start Date</label>
+                                <input class="col text-start bg-dark text-white", value="12.1" readonly/>
+                                <label class="px-1 col fw-bold">Start Time</label>
+                                <input class="col text-start bg-dark text-white", value="11:00" readonly/>
+                            </div>
+                            <div class="mx-3 row">
+                                <label class="px-1 col fw-bold">End Date</label>
+                                <input class="col text-start bg-dark text-white", value="12.2" readonly/>
+                                <label class="px-1 col fw-bold">End Time</label>
+                                <input class="col text-start bg-dark text-white", value="12:30" readonly/>
+                            </div>
+                            <div class="mx-3 row">
+                                <label class="px-1 col fw-bold">Time</label>
+                                <input class="col text-start bg-dark text-white", value="30" readonly/>
+                            </div>
+                        </div>
+                    </div> -->
+                </form> 
+        </div>
+
+        
+
+        <footer class="text-bg-dark bg-opacity-75 fixed-bottom d-flex justify-content-center align-items-center py-3">
+            © 20083971D Qiu Liuming, 20091909D Su Bowen
+        </footer>
+    </body>
+</html>
